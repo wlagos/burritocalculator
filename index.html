@@ -42,14 +42,14 @@
         const salary = parseFloat(document.getElementById("salary").value);
         const signInBonus = parseFloat(document.getElementById("sign-in-bonus").value);
         const loanRepayment = parseFloat(document.getElementById("loan-repayment").value);
-        const city = parseFloat(document.getElementById("city").value);
+        const city = document.getElementById("city").value;
         const retirementAmount = parseFloat(document.getElementById("retirement-amount").value);
         const rent = parseFloat(document.getElementById("rent").value) * 12;
         const localTaxPercent = parseFloat(document.getElementById("local-tax").value);
 
         const totalIncome = salary + signInBonus;
         const localTax = salary * (localTaxPercent / 100);
-        const totalExpenses = city + retirementAmount + rent + loanRepayment + localTax;
+        const totalExpenses = retirementAmount + rent + loanRepayment + localTax;
         const disposableIncome = totalIncome - totalExpenses;
 
         document.getElementById("disposable-income").innerHTML = disposableIncome;
