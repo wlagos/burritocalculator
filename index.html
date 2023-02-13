@@ -135,6 +135,10 @@
 
         document.getElementById("disposable-income").innerHTML = disposableIncome;
       }
+      
+      $( document ).ready(function() {
+         aert( "ready!" );
+      });
 
       $("input[data-type='currency']").on({
           keyup: function() {
