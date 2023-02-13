@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Disposable Income Calculator</title>
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      label {
+        width: 150px;
+        text-align: right;
+        margin-right: 10px;
+      }
+      
+      input[type="number"] {
+        padding: 5px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid gray;
+      }
+      
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: lightblue;
+        border: 1px solid blue;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      
+      p {
+        margin-top: 20px;
+        font-size: 18px;
+      }
+    </style>    
+    <script>
+      function calculateDisposableIncome() {
+        const salary = parseFloat(document.getElementById("salary").value);
+        const signInBonus = parseFloat(document.getElementById("sign-in-bonus").value);
+        const loanRepayment = parseFloat(document.getElementById("loan-repayment").value);
+        const city = parseFloat(document.getElementById("city").value);
+        const retirementAmount = parseFloat(document.getElementById("retirement-amount").value);
+        const rent = parseFloat(document.getElementById("rent").value);
+        const localTax = parseFloat(document.getElementById("local-tax").value);
+
+        const totalIncome = salary + signInBonus;
+        const totalExpenses = city + retirementAmount + rent + localTax + loanRepayment;
+        const disposableIncome = totalIncome - totalExpenses;
+
+        document.getElementById("disposable-income").innerHTML = disposableIncome;
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Disposable Income Calculator</h1>
+    <form>
+      <label for="salary">Salary:</label>
+      <input type="number" id="salary" name="salary" required><br><br>
+
+      <label for="sign-in-bonus">Sign-In Bonus:</label>
+      <input type="number" id="sign-in-bonus" name="sign-in-bonus"><br><br>
+
+      <label for="loan-repayment">Loan Repayment:</label>
+      <input type="number" id="loan-repayment" name="loan-repayment"><br><br>
+
+      <label for="city">City:</label>
+      <input type="number" id="city" name="city"><br><br>
+
+      <label for="retirement-amount">Retirement Amount:</label>
+      <input type="number" id="retirement-amount" name="retirement-amount"><br><br>
+
+      <label for="rent">Rent:</label>
+      <input type="number" id="rent" name="rent"><br><br>
+
+      <label for="local-tax">Local Tax:</label>
+      <input type="number" id="local-tax" name="local-tax"><br><br>
+    </form>
+    <button onclick="calculateDisposableIncome()">Calculate Disposable Income</button><br><br>
+    <p>Disposable Income: <span id="disposable-income"></span></p>
+  </body>
+</html>
+
+
+
+winstonmerlo@gmail.com
+local tax is an expense that should be calculated  as a percentage that gets subtracted from the salary
+Got it! Here's the updated code with local tax calculated as a percentage of the salary:
+
+php
+Copy code
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Disposable Income Calculator</title>
+    <script>
+      function calculateDisposableIncome() {
+        const salary = parseFloat(document.getElementById("salary").value);
+        const signInBonus = parseFloat(document.getElementById("sign-in-bonus").value);
+        const loanRepayment = parseFloat(document.getElementById("loan-repayment").value);
+        const city = parseFloat(document.getElementById("city").value);
+        const retirementAmount = parseFloat(document.getElementById("retirement-amount").value);
+        const rent = parseFloat(document.getElementById("rent").value);
+        const localTaxPercent = parseFloat(document.getElementById("local-tax").value);
+
+        const totalIncome = salary + signInBonus;
+        const localTax = salary * (localTaxPercent / 100);
+        const totalExpenses = city + retirementAmount + rent + loanRepayment + localTax;
+        const disposableIncome = totalIncome - totalExpenses;
+
+        document.getElementById("disposable-income").innerHTML = disposableIncome;
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Disposable Income Calculator</h1>
+    <form>
+      <label for="salary">Salary:</label>
+      <input type="number" id="salary" name="salary" required><br><br>
+
+      <label for="sign-in-bonus">Sign-In Bonus:</label>
+      <input type="number" id="sign-in-bonus" name="sign-in-bonus"><br><br>
+
+      <label for="loan-repayment">Loan Repayment:</label>
+      <input type="number" id="loan-repayment" name="loan-repayment"><br><br>
+
+      <label for="city">City:</label>
+      <input type="number" id="city" name="city"><br><br>
+
+      <label for="retirement-amount">Retirement Amount:</label>
+      <input type="number" id="retirement-amount" name="retirement-amount"><br><br>
+
+      <label for="rent">Rent:</label>
+      <input type="number" id="rent" name="rent"><br><br>
+
+      <label for="local-tax">Local Tax (% of salary):</label>
+      <input type="number" id="local-tax" name="local-tax"><br><br>
+    </form>
+    <button onclick="calculateDisposableIncome()">Calculate Disposable Income</button><br><br>
+    <p>Disposable Income: <span id="disposable-income"></span></p>
+  </body>
+</html>
